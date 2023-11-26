@@ -1,9 +1,4 @@
-variable "location" {
-  type    = string
-  default = "eastus2"
-}
-
-variable "vm_size" {
+variable "resource_group_name" {
   type = string
 }
 
@@ -12,6 +7,10 @@ variable "sms_country_code" {
 }
 
 variable "sms_phone_number" {
+  type = string
+}
+
+variable "storage_id" {
   type = string
 }
 
