@@ -25,7 +25,7 @@ resource "azurerm_monitor_metric_alert" "storage" {
   name                = "storage-transactions-metricalert"
   resource_group_name = var.resource_group_name
   scopes              = [var.storage_id]
-  description         = "Action will be triggered when Transactions count is greater than 50."
+  description         = "Action will be triggered when Transactions count is greater than ${var.storage_transactions_threshold}."
 
   criteria {
     metric_namespace = "Microsoft.Storage/storageAccounts"
