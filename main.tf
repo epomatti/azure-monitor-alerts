@@ -46,6 +46,13 @@ module "storage" {
   resource_group_name = azurerm_resource_group.default.name
 }
 
+module "eventhub" {
+  source              = "./modules/eventhub"
+  workload            = local.workload
+  resource_group_name = azurerm_resource_group.default.name
+  location            = azurerm_resource_group.default.location
+}
+
 module "alerts" {
   source              = "./modules/alerts"
   resource_group_name = azurerm_resource_group.default.name
@@ -58,4 +65,7 @@ module "alerts" {
 
   sms_country_code = var.sms_country_code
   sms_phone_number = var.sms_phone_number
+
+  event_hub_name      = module.eventhub.eventhub_name
+  event_hub_namespace = module.eventhub.eventhub_namespace_name
 }

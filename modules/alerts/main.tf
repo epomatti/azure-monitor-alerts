@@ -19,6 +19,12 @@ resource "azurerm_monitor_action_group" "main" {
     country_code = var.sms_country_code
     phone_number = var.sms_phone_number
   }
+
+  event_hub_receiver {
+    name                = "eventhubreceiver"
+    event_hub_name      = var.email_name
+    event_hub_namespace = var.event_hub_namespace
+  }
 }
 
 resource "azurerm_monitor_metric_alert" "storage" {

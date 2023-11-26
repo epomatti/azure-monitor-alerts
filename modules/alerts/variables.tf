@@ -25,3 +25,11 @@ variable "email_name" {
 variable "storage_transactions_threshold" {
   type = number
 }
+
+variable "event_hub_name" {
+  type = string
+}
+
+variable "event_hub_namespace" {
+  type = string
+}
