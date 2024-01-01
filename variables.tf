@@ -3,9 +3,9 @@ variable "location" {
   default = "eastus2"
 }
 
-# variable "vm_size" {
-#   type = string
-# }
+variable "vm_size" {
+  type = string
+}
 
 variable "sms_country_code" {
   type = string

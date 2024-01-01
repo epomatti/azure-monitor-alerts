@@ -20,3 +20,10 @@ resource "azurerm_subnet" "default" {
     }
   }
 }
+
+resource "azurerm_subnet" "vms" {
+  name                 = "vms-subnet"
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.default.name
+  address_prefixes     = ["10.0.20.0/24"]
+}

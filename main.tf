@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.81.0"
+      version = "3.85.0"
     }
   }
 }
@@ -16,12 +16,12 @@ resource "azurerm_resource_group" "default" {
   location = var.location
 }
 
-# module "vnet" {
-#   source              = "./modules/vnet"
-#   workload            = local.workload
-#   resource_group_name = azurerm_resource_group.default.name
-#   location            = azurerm_resource_group.default.location
-# }
+module "vnet" {
+  source              = "./modules/vnet"
+  workload            = local.workload
+  resource_group_name = azurerm_resource_group.default.name
+  location            = azurerm_resource_group.default.location
+}
 
 # resource "azurerm_log_analytics_workspace" "default" {
 #   name                = "log-${local.workload}"
@@ -31,14 +31,14 @@ resource "azurerm_resource_group" "default" {
 #   retention_in_days   = 30
 # }
 
-# module "vm" {
-#   source              = "./modules/vm"
-#   workload            = local.workload
-#   resource_group_name = azurerm_resource_group.default.name
-#   location            = azurerm_resource_group.default.location
-#   subnet_id           = module.vnet.default_subnet_id
-#   size                = var.vm_size
-# }
+module "vm" {
+  source              = "./modules/vm"
+  workload            = local.workload
+  resource_group_name = azurerm_resource_group.default.name
+  location            = azurerm_resource_group.default.location
+  subnet_id           = module.vnet.vms_subnet_id
+  size                = var.vm_size
+}
 
 module "storage" {
   source              = "./modules/storage"

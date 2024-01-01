@@ -5,3 +5,7 @@ output "vnet_id" {
 output "default_subnet_id" {
   value = azurerm_subnet.default.id
 }
+
+output "vms_subnet_id" {
+  value = azurerm_subnet.vms.id
+}
